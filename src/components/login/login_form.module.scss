@@ -1,0 +1,106 @@
+@import '../../scss_mixins/media_query_mixins/media_query.scss';
+
+$title_color: #474ebb;
+$font-size: 18px;
+$font-family: 'Product Sans';
+$line-height: 22px;
+
+.login_form_container {
+  font-family: $font-family;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  width: 55%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $title_color;
+    text-align: center;
+  }
+
+  .input_wrapper {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  @include for-portrait-phones;
+  @include for-smaller-tablets;
+  @include for-portrait-tablets-portrait-iPad {
+    width: 80%;
+  }
+}
+
+label {
+  margin-bottom: 100px;
+}
+
+.input_email,
+.input_password {
+  background-color: #fff !important;
+  font-size: $font-size;
+  margin-top: 0.7em;
+  text-align: center;
+  width: 96%;
+  height: 56px;
+  border-radius: 8px;
+  line-height: $line-height;
+
+  @include for-portrait-phones;
+  @include for-smaller-tablets {
+    font-size: calc($font-size/2);
+    height: 30px;
+  }
+}
+
+.input_email:-webkit-autofill,
+.input_email:-webkit-autofill:hover,
+.input_email:-webkit-autofill:focus,
+.input_email:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.input_password:-webkit-autofill,
+.input_password:-webkit-autofill:hover,
+.input_password:-webkit-autofill:focus,
+.input_password:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.input_email {
+  color: $title_color;
+}
+
+.input_password {
+  color: #828282;
+}
+.login_button {
+  font-size: $font-size;
+  color: white;
+  width: 50%;
+  height: 48px;
+  background: #04347f;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+
+  @include for-portrait-phones;
+  @include for-smaller-tablets {
+    font-size: calc($font-size/2);
+  }
+}
+
+.forgot_password {
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.035em;
+  color: #000;
+}

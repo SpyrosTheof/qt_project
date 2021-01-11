@@ -1,0 +1,16 @@
+@import '../../../../scss_mixins/media_query_mixins/media_query.scss';
+
+.intro_image_container {
+  width: 43.7vw;
+  height: 100vh;
+
+  @include for-portrait-phones;
+  @include for-smaller-tablets;
+  @include for-portrait-tablets-portrait-iPad {
+    display: none;
+  }
+}
+
+.intro_image {
+  height: 100%;
+}

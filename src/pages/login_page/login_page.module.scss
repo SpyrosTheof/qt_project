@@ -1,0 +1,12 @@
+$general_bg_color: #ffffff;
+
+.login_page_container {
+  width: 100vw;
+  background-color: $general_bg_color;
+}
+
+.login_page_section_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}

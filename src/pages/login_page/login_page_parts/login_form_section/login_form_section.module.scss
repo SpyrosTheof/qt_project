@@ -1,0 +1,12 @@
+@import '../../../../scss_mixins/media_query_mixins/media_query.scss';
+
+.login_form_container {
+  width: 56.3vw;
+  height: 100vh;
+
+  @include for-portrait-phones;
+  @include for-smaller-tablets;
+  @include for-portrait-tablets-portrait-iPad {
+    width: 100vw;
+  }
+}

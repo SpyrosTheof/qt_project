@@ -1,0 +1,31 @@
+@mixin for-portrait-phones {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+@mixin for-smaller-tablets {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin for-portrait-tablets-portrait-iPad {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+@mixin for-desktop-up {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin for-tablet-landscape-low-res-laptops-and-desktops {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+@mixin for-high-res-laptops-and-desktops {
+  @media (min-width: 1281px) {
+    @content;
+  }
+}
