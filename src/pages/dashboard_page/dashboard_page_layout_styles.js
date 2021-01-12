@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-around',
       alignItems: 'flex-start',
       flexDirection: 'row',
-      paddingTop: 100,
+      paddingTop: 50,
     },
   },
   closeMenuButton: {

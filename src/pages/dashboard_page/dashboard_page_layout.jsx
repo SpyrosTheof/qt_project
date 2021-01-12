@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,36 +23,55 @@ import Warehouse2 from '../../assets/Warehouse2.svg';
 import Warehouse3 from '../../assets/Warehouse3.svg';
 import Warehouse4 from '../../assets/Warehouse4.svg';
 import EntryIcon from '../../assets/Entry.svg';
-import Figure1 from '../../assets/figure1.png';
-import Figure2 from '../../assets/figure2.png';
-import Figure3 from '../../assets/figure3.png';
 import SearchIcon from '../../assets/Search.svg';
+import SubMenusLayout from '../../components/UI_navigation/sub_menus_layout';
+import { Link, useLocation } from 'react-router-dom';
 
 import useStyles from './dashboard_page_layout_styles';
 
 //drawer
 
 function DashboardPageLayout() {
+  const urlLocation = useLocation();
+
+  const mainHeading =
+    urlLocation.pathname == '/'
+      ? 'Κεντρική Σελίδα'
+      : urlLocation.pathname == '/entry'
+      ? 'Καταχώρηση'
+      : urlLocation.pathname == '/warehouse1'
+      ? 'Αποθήκη1'
+      : urlLocation.pathname == '/warehouse2'
+      ? 'Αποθήκη2'
+      : urlLocation.pathname == '/warehouse3'
+      ? 'Αποθήκη3'
+      : 'Αποθήκη4';
+
   const dummyMenuCategories = [
     {
       listTitle: 'Κεντρική Σελίδα',
       src: HomeIcon,
+      path: '/',
     },
     {
       listTitle: 'Αποθήκη 1',
       src: Warehouse1,
+      path: '/warehouse1',
     },
     {
       listTitle: 'Αποθήκη 2',
       src: Warehouse2,
+      path: '/warehouse2',
     },
     {
       listTitle: 'Αποθήκη 3',
       src: Warehouse3,
+      path: '/warehouse3',
     },
     {
       listTitle: 'Αποθήκη 4',
       src: Warehouse4,
+      path: '/warehouse4',
     },
   ];
   const classes = useStyles();
@@ -61,6 +80,8 @@ function DashboardPageLayout() {
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
+
+  //Παρακάτω υπάρχουν κάποια inline styles τα οποία μπήκαν λόγω βιασύνης αλλά και λόγω μεγέθους του project - ελέγξιμα -->χρειάζεται refactoring
   const drawer = (
     <div>
       <List>
@@ -82,29 +103,31 @@ function DashboardPageLayout() {
           />
         </ListItem>
         {dummyMenuCategories.map((category, index) => (
-          <ListItem
-            className={classes.categoryToolTip}
-            style={{
-              margin: 'auto',
-              width: '85%',
-            }}
-            key={index}
-          >
-            <Tooltip title={category.listTitle}>
-              <ListItemIcon style={{ minWidth: 35 }}>
-                <img
-                  style={{ width: 24, backgroundColor: 'C4C4C4' }}
-                  className={classes.intro_image}
-                  src={category.src}
-                  alt='intro_image'
-                />
-              </ListItemIcon>
-            </Tooltip>
-            <ListItemText
-              classes={{ primary: classes.listItemText }}
-              primary={category.listTitle}
-            />
-          </ListItem>
+          <Link to={category.path} style={{ textDecoration: 'none' }}>
+            <ListItem
+              className={classes.categoryToolTip}
+              style={{
+                margin: 'auto',
+                width: '85%',
+              }}
+              key={index}
+            >
+              <Tooltip title={category.listTitle}>
+                <ListItemIcon style={{ minWidth: 35 }}>
+                  <img
+                    style={{ width: 24, backgroundColor: 'C4C4C4' }}
+                    className={classes.intro_image}
+                    src={category.src}
+                    alt='intro_image'
+                  />
+                </ListItemIcon>
+              </Tooltip>
+              <ListItemText
+                classes={{ primary: classes.listItemText }}
+                primary={category.listTitle}
+              />
+            </ListItem>
+          </Link>
         ))}
 
         <ListItem style={{ marginTop: 30 }}>
@@ -124,29 +147,30 @@ function DashboardPageLayout() {
             primary='ΚΑΤΑΧΩΡΗΣΗ ΥΛΙΚΟΥ ΚΑΙ ΚΩΔΙΚΩΝ'
           />
         </ListItem>
-
-        <ListItem
-          className={classes.categoryToolTip}
-          style={{
-            margin: 'auto',
-            width: '85%',
-          }}
-        >
-          <Tooltip title='Καταχώρηση'>
-            <ListItemIcon style={{ minWidth: 35 }}>
-              <img
-                style={{ width: 24, backgroundColor: 'C4C4C4' }}
-                className={classes.intro_image}
-                src={EntryIcon}
-                alt='intro_image'
-              />
-            </ListItemIcon>
-          </Tooltip>
-          <ListItemText
-            classes={{ primary: classes.listItemText }}
-            primary={'Καταχώρηση'}
-          />
-        </ListItem>
+        <Link to='/entry' style={{ textDecoration: 'none' }}>
+          <ListItem
+            className={classes.categoryToolTip}
+            style={{
+              margin: 'auto',
+              width: '85%',
+            }}
+          >
+            <Tooltip title='Καταχώρηση'>
+              <ListItemIcon style={{ minWidth: 35 }}>
+                <img
+                  style={{ width: 24, backgroundColor: 'C4C4C4' }}
+                  className={classes.intro_image}
+                  src={EntryIcon}
+                  alt='intro_image'
+                />
+              </ListItemIcon>
+            </Tooltip>
+            <ListItemText
+              classes={{ primary: classes.listItemText }}
+              primary={'Καταχώρηση'}
+            />
+          </ListItem>
+        </Link>
 
         <div
           style={{
@@ -208,7 +232,7 @@ function DashboardPageLayout() {
                 fontWeight: '500',
               }}
             >
-              Κεντρική Σελίδα
+              {mainHeading}
             </Typography>
           </div>
           <div className={classes.searchWithIcon}>
@@ -287,9 +311,7 @@ function DashboardPageLayout() {
         </Hidden>
       </nav>
       <div className={classes.content}>
-        <img src={Figure1} alt='figure1' />
-        <img src={Figure2} alt='figure2' />
-        <img src={Figure3} alt='figure3' />
+        <SubMenusLayout />
       </div>
     </div>
   );
